@@ -62,6 +62,40 @@ void Zadacha56()
     Console.WriteLine("Строка с наименьшей суммой элементов имеет номер " + minPosition);
 }
 
+void Zadacha58() 
+// Задача 58: Заполните спирально массив 4 на 4 числами от 1 до 16
+// другой метод с помощью цикла
+{
+    int rows = 5;
+    int columns = 5;
+    int[,] array = new int[rows, columns];
+    int row = 0; 
+    int column = 0;
+    int changeRow = 0;
+    int changeColumn = 1;
+    int steps = columns; // ограничение по строке
+    int turn = 0;
+
+    for (int i = 0; i < array.Length; i++) // array.Length = 4*4 = 16
+    {
+        array[row, column] = i + 1;
+        steps--;
+        Console.WriteLine(array[row, column] + "  ");
+        if (steps == 0)
+        {
+            steps = rows - 1 - turn/2;
+            int temp = changeRow;
+            changeRow = changeColumn;
+            changeColumn = -temp;
+            turn++;
+        }
+
+        row += changeRow;
+        column += changeColumn;
+    }
+    PrintArray(array);
+}
+
 void FillArray(int[,] array, int startNumber, int finishNumder)
 {
     Random random = new Random();
@@ -92,4 +126,5 @@ void PrintArray(int[,] array)
 }
 
 //Zadacha54();
-Zadacha56();
+//Zadacha56();
+Zadacha58();
